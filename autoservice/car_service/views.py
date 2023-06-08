@@ -142,21 +142,26 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = 'car_service/order_form.html'
     success_url = reverse_lazy('user_order_list')
 
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['car'] = self.car
+        return context
+
     def get_initial(self) -> Dict[str, Any]:
+        self.car = get_object_or_404(Car, id=self.request.GET.get('car_id'))
+        # self.car = self.request.GET.get('car_id')
         initial = super().get_initial()
+        initial['car'] = self.car
         initial['cost'] = 1
         return initial
     
     def form_valid(self, form):
+        form.instance.car = self.car
         form.instance.cost = 1
         messages.success(self.request, _('Order Created!'))
         return super().form_valid(form)
 
 
     
-#     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-#             context = super().get_context_data(**kwargs)
-#             context['order'] = self.order
-#             return context
 
     

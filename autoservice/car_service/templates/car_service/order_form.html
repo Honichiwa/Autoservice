@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}Create Order {{ book.title }} at {{ block.super }}{% endblock title %}
+{% block title %}Create Order {{ car.car_nr }} at {{ block.super }}{% endblock title %}
 {% block content %}
-<h1>Create Order</h1>
-<form method="post" action="{{ request.path }}?order_id={{ order.id }}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Order</button>
-</form>
+{% if user == car.client %}
+    <h1>Create Order for {{ car }} </h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Order</button>
+    </form>
+{% else %}
+    <p class="box box-error">You are not the car owner!</p>
+{% endif %}
 {% endblock content %}

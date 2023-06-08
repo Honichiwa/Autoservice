@@ -49,7 +49,7 @@ class Car(models.Model):
         blank=True,
         null=True
     )
-    description = HTMLField(_("car_description"), max_length=8000, blank=True, null=True)
+    description = models.TextField(_("description"), max_length=8000, blank=True, null=True)
 
     class Meta:
         ordering = ['car_nr', 'car_model']

@@ -3,6 +3,7 @@
 {% block title %}My cars {{ block.super }}{% endblock title %}
 {% block content %}
 <h1>My cars<a class="button float-right" href="{% url 'car_create' %} ">Add car</a></h1>
+<p class='box box-info'><strong>If you want to create an order or view car details - select a car</p>
 {% if car_list %}
 <ul class="car-list">
     {% for car in car_list %}
