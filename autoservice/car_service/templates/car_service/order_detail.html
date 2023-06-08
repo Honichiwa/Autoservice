@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tilte %}{{order.date}} {{order.car.client.first_name}} | {{block.super}}{% endblock tilte %}
+{% block content %}
+{% if order.car.cover %}
+    <img class='car-cover' src="{{ order.car.cover.url }}">
+{% else %}
+    <img class="car-cover" src="{% static 'car_service/img/default_cover.jpg' %}">
+{% endif %}
+<h3>{{order.date}}, {{order.car.client.first_name}} {{order.car.client.last_name}},  {{order.car.car_nr}}</h3>
+<p>{{order.car.car_model}}</p>
+<ul>
+{% for info in order.order_infos.all %}
+<li>{{info.service}} - Quantity -  {{info.quantity}} - Price -  {{info.price}}</li>
+{% endfor %}
+</ul>
+<p><strong>Total cost: {{order.total_sum}}</strong></p>
+{% if order.summary %}
+<p>Brief service summary: {{order.summary|safe}}</p>
+{% endif %}
+<h2>Comments</h2>
+
+{% if user.is_staff or user.is_superuser or user == order.car.client %}
+    <form method="post" action="{{ request.path }}">
+    <h3>Leave your comment</h3>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Comment</button>
+    </form>
+{% elif user.is_authenticated and user != order.car.client.username%}
+    <p class="box box-info">Only the car owner or AutoTadas staff can comment</p>
+{% else %}
+    <p class="box box-info">If you want to post a comment, you have to <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sing up</a></p>
+{% endif %}
+{% if order.comments.count > 0 %}
+    <ul>
+        {% for comment in order.comments.all %}
+            <li>{{ comment.commented_at }} by <a href="{% url 'profile' comment.commenter.id %}">
+                {% if comment.commenter.profile.picture %}
+                    <img src="{{ comment.commenter.profile.picture.url }}" class="user-avatar">
+                {% endif %}
+                {{ comment.commenter }}</a><br>
+                {{ comment.content }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock content %}
+
+
+

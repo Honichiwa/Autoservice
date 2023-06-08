@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{car.car_nr}} | {{block.sulier}}{% endblock title %}
+{% block content %}
+<h1>{{car.car_nr}}{% if user == car.client %}<a class="button float-right" href="{% url 'order_create' %} ">Create order</a>{% endif %}</h1>
+<ul>
+<li>Model: {{car.car_model}}</li>
+<li>Client: {{car.client.first_name}} {{car.client.last_name}}</li>
+<li>Car VIN: {{car.vin}}</li>
+{% if car.description %}
+<li>Description: {{car.description|safe}}</li>
+{% endif %}
+</ul>
+{% endblock content %}
+

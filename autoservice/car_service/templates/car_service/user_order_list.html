@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}My orders {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>My orders<a class="button float-right" href="{% url 'order_create' %} ">Create order</a></h1>
+{% if order_list %}
+<ul>
+    {% for order in order_list %}
+    <li class="order-status-{{ order.status }}">
+        <a href="{% url 'order_detail' order.pk %}">{{ order.car }}</a> order placed: {{order.date}}. {{ order.get_status_display }}{% if order.due_back %}. Will be fixed: {{ order.due_back }}{% endif %}
+        {% if order.status == 1 or order.status == 0 and order.is_overdue %}<span class="order-overdue">LATE!</span>{% endif %}
+    </li>
+    {% endfor %}
+</ul>   
+{% else %}
+<p class="box box-warning">
+    You dont have any orders!
+</p>
+{% endif %}
+{% endblock content %}

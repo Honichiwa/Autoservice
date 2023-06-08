@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<h1>AutoTadas</h1>
+<p>Welcome to car service paradise!</p>
+<p>some info:</p>
+<ul>
+    <li><strong>Cars in garage:</strong> {{num_cars}}</li>
+    <li><strong>Services availabe:</strong> {{num_services}}</li>
+    <li><strong>Cars fixed so far:</strong> {{num_orders_done}}</li>
+    <li><strong>All services done:</strong> {{num_orders_info}}</li>
+    <li>You're visiting us already for the <strong>{{ num_visits|ordinal }}</strong> time</li>
+</ul>
+{% endblock content %}
