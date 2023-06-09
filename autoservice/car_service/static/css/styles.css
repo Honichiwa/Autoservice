@@ -194,6 +194,8 @@ a.button {
     border: 1px solid #be33e8;
     border-radius: 25px;
     border-width: 5px;
+    margin: 0 0.25rem;
+    font-size: 1.25em;
 }
 
 a.button:hover {
@@ -202,4 +204,8 @@ a.button:hover {
 
 .float-right {
     float: right;
+}
+
+.user-orders {
+    margin: 1rem 0.25rem;
 }

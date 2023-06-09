@@ -1,6 +1,6 @@
 from typing import Any, Dict, Optional, Type
 from datetime import date, timedelta
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models.query import QuerySet
@@ -182,5 +182,58 @@ class UserOrderCreateView(LoginRequiredMixin, generic.CreateView):
     def get_absolute_url(self):
         return reverse('order_detail', args=[str(self.id)])
     
+class CarUpdateView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.UpdateView
+    ):
 
+    model = Car
+    form_class = CarForm
+    template_name = 'car_service/car_form.html'
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+            context = super().get_context_data(**kwargs)
+            context['update'] = True
+            return context
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.client == self.request.user
+    
+    def get_success_url(self) -> str:
+        messages.success(self.request, _('Car Updated!'))
+        return reverse('user_car_list')
+
+class CarDeleteView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.DeleteView
+    ):
+    model = Car
+    template_name = 'car_service/user_car_delete.html'
+
+    def test_func(self) -> bool | None:
+        obj = self.get_object()
+        return obj.client == self.request.user
+    
+    def get_success_url(self) -> str:
+        messages.success(self.request, _('Car Deleted!'))
+        return reverse('user_car_list')
+    
+class UserOrderDeleteView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.DeleteView
+    ):
+    model = Order
+    template_name = 'car_service/user_order_delete.html'
+
+    def test_func(self) -> bool | None:
+        obj = self.get_object()
+        return obj.car.client == self.request.user
+    
+    def get_success_url(self) -> str:
+        messages.success(self.request, _('Order Deleted!'))
+        return reverse('user_order_list')
     

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Deleting {{ object.car_nr }} to {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>Delete car</h1>
+<p>Car license plate: {{ object.car_nr }}</p>
+<p>Model: {{ object.car_model}}</p>
+<p>VIN: {{ object.vin }}</p>
+{% if object.orders.all.count == 0 %}
+<form action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+    <a href="{% url 'user_car_list' %}">Change my mind</a>
+</form>
+{% else %}
+<p class='box box-error'>You cannot delete this car since it has active orders.<p>
+<a href="{% url 'user_car_list' %}">Go back</a>
+{% endif %}
+{% endblock content %}

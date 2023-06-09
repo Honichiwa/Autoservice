@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Deleting {{ object }} to {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>Delete Order</h1>
+<p>Order id: {{ object.id }}</p>
+<p>Car: {{ object.car}}</p>
+<ul>
+    {% for info in object.order_infos.all %}
+    <li>{{info.service}} - Quantity -  {{info.quantity}} - Price -  {{info.price}}</li>
+    {% endfor %}
+</ul>
+<p><strong>Total cost: {{order.total_sum}}</strong></p>
+<p class='box box-info'>{{order.get_status_display}}</p>
+{% if order.summary %}
+<p>Brief service summary: {{order.summary|safe}}</p>
+{% endif %}
+{% if object.status == 0 %}     
+<form action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+    <a href="{% url 'user_car_list' %}">Change my mind</a>
+</form>
+{% else %}
+<p class='box box-error'>You can only delete order with status "Waiting ".</p>
+<a href="{% url 'user_order_list' %}">Go back</a>
+{% endif %}
+{% endblock content %}

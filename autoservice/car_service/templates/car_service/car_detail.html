@@ -2,6 +2,7 @@
 {% block title %}{{car.car_nr}} | {{block.sulier}}{% endblock title %}
 {% block content %}
 <h1>{{car.car_nr}}{% if user == car.client %}<a class="button float-right" href="{% url 'order_create' %}?car_id={{ car.id }} ">Create order</a>{% endif %}</h1>
+{% if user == car.client %}<a class="button float-left" href="{% url 'car_update' car.pk %}">Update car</a><a class="button float-left" href="{% url 'car_delete' car.pk %}">Delete car</a>{% endif %}
 <ul>
 <li>Model: {{car.car_model}}</li>
 <li>Client: {{car.client.first_name}} {{car.client.last_name}}</li>
