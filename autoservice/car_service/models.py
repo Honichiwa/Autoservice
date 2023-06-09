@@ -65,7 +65,7 @@ class Car(models.Model):
 class Order(models.Model):
 
     date= models.DateField(_("date"), auto_now=False, auto_now_add=False)
-    cost = models.IntegerField(_("cost"))
+    cost = models.IntegerField(_("cost"),null=True)
     car = models.ForeignKey(
         Car, 
         verbose_name=_("car"),

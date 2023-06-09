@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}My orders {{ block.super }}{% endblock title %}
 {% block content %}
-<h1>My orders<a class="button float-right" href="{% url 'user_car_list' %} ">Create order</a></h1>
+<h1>My orders<a class="button float-right" href="{% url 'user_order_create' %}">Create order</a></h1>
 {% if order_list %}
 <ul>
     {% for order in order_list %}

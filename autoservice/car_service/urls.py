@@ -11,5 +11,6 @@ urlpatterns = [
     path('car_list/my/', views.UserCarList.as_view(), name='user_car_list'),
     path('car_list/car_create/', views.CarCreateView.as_view(), name='car_create'),
     path('order_list/order_create/', views.OrderCreateView.as_view(), name='order_create'),
+    path('order_list/new/', views.UserOrderCreateView.as_view(), name='user_order_create')
 
 ]

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Type
 from datetime import date, timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -10,9 +10,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
-from . forms import OrderCommentForm, OrderForm, CarForm
+from . forms import OrderCommentForm, OrderForm, CarForm, OrderOForm
 from . models import Car, Order_info, Service, Order, OrderComment
-
+from django.forms.models import BaseModelForm
 def index(request):
     #susumuojam objektu reiksmes
     num_cars = Car.objects.all().count()
@@ -149,7 +149,6 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
 
     def get_initial(self) -> Dict[str, Any]:
         self.car = get_object_or_404(Car, id=self.request.GET.get('car_id'))
-        # self.car = self.request.GET.get('car_id')
         initial = super().get_initial()
         initial['car'] = self.car
         initial['cost'] = 1
@@ -161,7 +160,27 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
         messages.success(self.request, _('Order Created!'))
         return super().form_valid(form)
 
+class UserOrderCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Order
+    form_class = OrderOForm
+    template_name = 'car_service/user_order_form.html'
 
+    def get_form(self, form_class: Type[BaseModelForm] | None = form_class) -> BaseModelForm:
+        form = super().get_form(form_class)
+        if not form.is_bound:
+            form.fields["car"].queryset = Car.objects.filter(client=self.request.user)
+        return form
+
+    def get_success_url(self) -> str:
+        return reverse('user_order_list')
+
+    def form_valid(self, form):
+        form.instance.order = self.request.user
+        messages.success(self.request, _('Order Created!'))
+        return super().form_valid(form)
+
+    def get_absolute_url(self):
+        return reverse('order_detail', args=[str(self.id)])
     
 
     

@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Create Order at {{ block.super }}{% endblock title %}
 {% block content %}
-{% if user == car.client %}
-    <h1>Create Order for {{ car }} </h1>
+<h1>Create new order </h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create Order</button>
     </form>
-{% else %}
-    <p class="box box-error">You are not the car owner!</p>
-{% endif %}
 {% endblock content %}

@@ -37,3 +37,14 @@ class OrderForm(forms.ModelForm):
             'due_back': DateInput(),
             'status': forms.HiddenInput(),
         }
+
+class OrderOForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Order
+        fields = ('date', 'car', 'due_back', 'status')
+        widgets = {
+            'date': DateInput(),
+            'due_back': DateInput(),
+            'status': forms.HiddenInput(),
+        }
