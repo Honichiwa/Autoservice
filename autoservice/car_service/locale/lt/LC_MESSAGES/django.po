@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-12 11:03+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+#: .\car_service\models.py:13
+msgid "make"
+msgstr "gamintojas"
+
+#: .\car_service\models.py:14
+msgid "model"
+msgstr "modelis"
+
+#: .\car_service\models.py:15
+msgid "year"
+msgstr "metai"
+
+#: .\car_service\models.py:19 .\car_service\models.py:34
+msgid "carmodel"
+msgstr "automobilio modelis"
+
+#: .\car_service\models.py:20
+msgid "carmodels"
+msgstr "automobilio modeliai"
+
+#: .\car_service\models.py:30
+msgid "car nr"
+msgstr "auto nr"
+
+#: .\car_service\models.py:31
+msgid "vin"
+msgstr "vin"
+
+#: .\car_service\models.py:40
+msgid "client"
+msgstr "klientas"
+
+#: .\car_service\models.py:47
+msgid "cover"
+msgstr "viršelis"
+
+#: .\car_service\models.py:52
+msgid "description"
+msgstr "aprašymas"
+
+#: .\car_service\models.py:56 .\car_service\models.py:71
+msgid "car"
+msgstr "automobilis"
+
+#: .\car_service\models.py:57 .\car_service\templates\base.html:18
+msgid "cars"
+msgstr "automobiliai"
+
+#: .\car_service\models.py:67
+msgid "date"
+msgstr "data"
+
+#: .\car_service\models.py:68
+msgid "cost"
+msgstr "kaina"
+
+#: .\car_service\models.py:74
+msgid "due back"
+msgstr "iki"
+
+#: .\car_service\models.py:75
+msgid "order_summary"
+msgstr "užsakymo aprašymas"
+
+#: .\car_service\models.py:78
+msgid "Waiting"
+msgstr "Laukiama"
+
+#: .\car_service\models.py:79
+msgid "In progress"
+msgstr "Tvarkoma"
+
+#: .\car_service\models.py:80
+msgid "Finished"
+msgstr "Baigta"
+
+#: .\car_service\models.py:81
+msgid "Ready for pick up"
+msgstr "Paruošta paėmimui"
+
+#: .\car_service\models.py:82
+msgid "Not fixable"
+msgstr "Nesutvarkoma"
+
+#: .\car_service\models.py:86
+msgid "status"
+msgstr "statusas"
+
+#: .\car_service\models.py:93 .\car_service\models.py:168
+msgid "order"
+msgstr "užsakymas"
+
+#: .\car_service\models.py:94 .\car_service\models.py:142
+#: .\car_service\templates\base.html:19
+msgid "orders"
+msgstr "užsakymai"
+
+#: .\car_service\models.py:118
+msgid "name"
+msgstr "vardas"
+
+#: .\car_service\models.py:119 .\car_service\models.py:146
+msgid "price"
+msgstr "kaina"
+
+#: .\car_service\models.py:123
+msgid "service"
+msgstr "paslauga"
+
+#: .\car_service\models.py:124 .\car_service\models.py:137
+msgid "services"
+msgstr "paslaugos"
+
+#: .\car_service\models.py:145
+msgid "quantity"
+msgstr "kiekis"
+
+#: .\car_service\models.py:150
+msgid "order_info"
+msgstr "užsakymo informacija"
+
+#: .\car_service\models.py:151
+msgid "order_infos"
+msgstr "užsakymų informacija"
+
+#: .\car_service\models.py:173
+msgid "commenter"
+msgstr "komentatorius"
+
+#: .\car_service\models.py:178
+msgid "Commented"
+msgstr "Pakomentavo"
+
+#: .\car_service\models.py:179
+msgid "content"
+msgstr "turinys"
+
+#: .\car_service\models.py:183
+msgid "order comment"
+msgstr "užsakymo komentaras"
+
+#: .\car_service\models.py:184
+msgid "order comments"
+msgstr "užsakymo komentarai"
+
+#: .\car_service\templates\base.html:17
+msgid "home"
+msgstr "pradinis"
+
+#: .\car_service\templates\base.html:24
+msgid "my cars"
+msgstr "mano automobiliai"
+
+#: .\car_service\templates\base.html:25
+msgid "my orders"
+msgstr "mano užsakymai"
+
+#: .\car_service\templates\base.html:26
+msgid "logout"
+msgstr "atsijungti"
+
+#: .\car_service\templates\base.html:28
+msgid "login"
+msgstr "prisijungti"
+
+#: .\car_service\templates\base.html:29
+msgid "signup"
+msgstr "registracija"
+
+#: .\car_service\templates\base.html:33
+msgid "admin"
+msgstr "admin"
+
+#: .\car_service\views.py:96
+msgid "Comment Added!"
+msgstr "Komentaras pridėtas!"
+
+#: .\car_service\views.py:135
+msgid "Car Added!"
+msgstr "Automobilis pridėtas!"
+
+#: .\car_service\views.py:160 .\car_service\views.py:179
+msgid "Order Created!"
+msgstr "Užsakymas sukurtas!"
+
+#: .\car_service\views.py:205
+msgid "Car Updated!"
+msgstr "Automobilis atnaujintas!"
+
+#: .\car_service\views.py:221
+msgid "Car Deleted!"
+msgstr "Automobilis ištrintas!"
+
+#: .\car_service\views.py:237
+msgid "Order Deleted!"
+msgstr "Užsakymas ištrintas!"
